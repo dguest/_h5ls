@@ -46,3 +46,43 @@ if [ -f $HOME/tools/_h5ls/_h5ls.sh ]; then
     . $HOME/tools/_h5ls/_h5ls.sh
 fi
 ```
+
+## Use Example
+
+Some datasets are large. For example, the dataset used in "Pythia Generated Jet Images for Location Aware Generative Adversarial Network Training" [![DOI](https://zenodo.org/badge/DOI/10.17632/4r4v785rgx.1.svg)](https://zenodo.org/record/268592#.XG8TQ7pKhhF) is over 2 GB in size. So it can be advantageous to quickly look inside without having to open the full file.
+
+After downloading the dataset from [Zenodo](https://zenodo.org/)
+
+```
+wget -O jet-images.h5 https://zenodo.org/record/269622/files/jet-images_Mass60-100_pT250-300_R1.25_Pix25.hdf5
+```
+
+and checking the file integrity with MD5 checksum
+
+```
+md5sum --check <<<"f9b11c46b6a0ff928bec2eccf865ecf0 jet-images.h5"
+jet-images.h5: OK
+```
+
+use `h5ls` to check the structure
+
+```
+$ h5ls jet-images.h5/ #tab to see options
+image        jet_delta_R  jet_eta      jet_mass     jet_phi      jet_pt       signal       tau_1        tau_2        tau_21       tau_3        tau_32
+$ h5ls jet-images.h5/im #tab to get "image" completed
+$ h5ls jet-images.h5/image
+image                    Dataset {872666, 25, 25}
+h5ls jet-images.h5/
+image                    Dataset {872666, 25, 25}
+jet_delta_R              Dataset {872666}
+jet_eta                  Dataset {872666}
+jet_mass                 Dataset {872666}
+jet_phi                  Dataset {872666}
+jet_pt                   Dataset {872666}
+signal                   Dataset {872666}
+tau_1                    Dataset {872666}
+tau_2                    Dataset {872666}
+tau_21                   Dataset {872666}
+tau_3                    Dataset {872666}
+tau_32                   Dataset {872666}
+```
