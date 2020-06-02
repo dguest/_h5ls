@@ -1,4 +1,4 @@
-# completion function for hdf 'h5ls'
+# -*- sh-shell: bash -*- completion function for HDF5 'h5ls'
 _h5ls()
 {
     local cur prev opts WORDS end
